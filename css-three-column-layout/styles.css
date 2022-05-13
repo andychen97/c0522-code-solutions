@@ -3,7 +3,7 @@
 }
 
 .container {
-  max-width: auto;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .col-1 {
-  flex-basis: calc(100%);
+  flex-basis: 100%;
 }
 
 .col-3 {
@@ -53,8 +53,4 @@
 .mlr10 {
   margin-left: 10%;
   margin-right: 10%;
-}
-
-.contains {
-  max-width: 1000px;
 }
