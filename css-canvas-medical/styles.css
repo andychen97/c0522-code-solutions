@@ -76,7 +76,7 @@ h3 {
   color: lightgray;
   margin-top: 1rem;
   margin-right: 5rem;
-  float: right;
+  justify-content: flex-end;
 }
 
 .navbar a {
@@ -134,7 +134,7 @@ hr {
 }
 
 .align-right {
-  float: right;
+  justify-content: flex-end;
 }
 
 .align-center {
