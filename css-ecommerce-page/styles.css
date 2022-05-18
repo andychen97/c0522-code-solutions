@@ -1,0 +1,65 @@
+* {
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col-1 {
+  flex-basis: 100%;
+}
+
+.col-5 {
+  flex-basis: 20%;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.product-image {
+  max-width: 180px;
+  max-height: 270px;
+}
+
+.louis-vuitton {
+  max-width: 180px;
+  height: 270px;
+  object-fit: cover;
+}
+
+.margin-sides {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.grey-text {
+  color: lightgray;
+}
+
+.yellow-background {
+  background-color: #fff2e7;
+  padding: 2px 3px;
+  border-radius: 5px;
+}
+
+.small-font {
+  font-size: 8pt;
+}
+
+.thin-text {
+  font-weight: 400;
+}
+
+.bar {
+  background-color: lightgray;
+  border-right: 1px solid lightgray;
+  margin-left: 4px;
+  margin-right: 4px;
+}
