@@ -52,16 +52,16 @@ function doubleAll(numbers) {
 
 function getKeys(object) {
   var keys = [];
-  for (object.key in object) {
-    keys.push(object.key);
+  for (var key in object) {
+    keys.push(key);
   }
   return keys;
 }
 
 function getValues(object) {
   var values = [];
-  for (object.key in object) {
-    values.push(object[object.key]);
+  for (var key in object) {
+    values.push(object[key]);
   }
   return values;
 }
