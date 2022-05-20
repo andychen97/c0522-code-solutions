@@ -2,7 +2,7 @@
 
 function countdown(number) {
   var countdownArray = [];
-  for (let i = number; i >= 0; i--) {
+  for (var i = number; i >= 0; i--) {
     countdownArray.push(i);
   }
   return countdownArray;
