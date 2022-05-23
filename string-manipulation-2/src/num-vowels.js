@@ -11,8 +11,8 @@
 
 function numVowels(string) {
   var count = 0;
-  var vowel = ['a', 'e', 'i', 'o', 'u'];
-  var lower = string.toLowerCase().split('');
+  var vowel = 'aeiou';
+  var lower = string.toLowerCase();
   for (var i = 0; i < lower.length; i++) {
     if (vowel.includes(lower[i])) {
       count++;
