@@ -1,0 +1,42 @@
+.container {
+  max-width: auto;
+  margin: 0 auto;
+}
+
+.light-background {
+  background-color: #fef9f1;
+}
+
+.dark-background {
+  background-color: #111;
+}
+
+.row {
+  display: flex;
+  height: 100vh;
+}
+
+.col-1 {
+  flex-basis: 100%;
+}
+
+.circle {
+  max-width: 200px;
+  height: 200px;
+  background-color: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 50px 24px yellow;
+}
+
+.black-circle {
+  max-width: 200px;
+  height: 200px;
+  background-color: #252525;
+  border-radius: 50%;
+  box-shadow: 0 -10px 0 4px #0c0c0c;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
