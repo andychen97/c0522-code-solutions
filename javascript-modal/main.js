@@ -3,9 +3,9 @@ var $button = document.querySelector('.open-modal');
 var $modalBtn = document.querySelector('.modal-button');
 
 $button.addEventListener('click', function () {
-  $modal.style.display = 'block';
+  $modal.className = 'modal display-block';
 });
 
 $modalBtn.addEventListener('click', function () {
-  $modal.style.display = 'none';
+  $modal.className = 'modal display-none';
 });

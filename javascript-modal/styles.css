@@ -22,7 +22,6 @@
 }
 
 .modal {
-  display: none;
   top: 0;
   left: 0;
   position: fixed;
@@ -56,4 +55,12 @@
   margin-bottom: 20px;
   box-shadow: 6px 6px 11px -9px #656565;
   cursor: pointer;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
 }
