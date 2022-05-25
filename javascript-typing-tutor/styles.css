@@ -1,0 +1,26 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col-1 {
+  flex-basis: 100%;
+}
+
+.align-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.align-text-ceter {
+  text-align: center;
+}
+
+.padding-top-bottom {
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
