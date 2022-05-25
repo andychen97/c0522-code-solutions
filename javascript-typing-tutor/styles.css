@@ -1,3 +1,7 @@
+* {
+  font-family: "Times New Roman", Times, serif;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -26,5 +30,17 @@
 }
 
 .green-text {
-  color: greenyellow;
+  color: green;
+}
+
+.red-text {
+  color: red;
+}
+
+span {
+  padding-bottom: 5px;
+}
+
+.underscore {
+  border-bottom: 3px solid black;
 }
