@@ -7,7 +7,6 @@ $tabContainer.addEventListener('click', function (event) {
     for (var i = 0; i < $tab.length; i++) {
       if ($tab[i] === event.target) {
         $tab[i].className = 'tab active';
-        // var attribute = event.target.getAttribute('data-view');
       } else {
         $tab[i].className = 'tab';
       }
