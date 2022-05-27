@@ -25,4 +25,4 @@ console.log('typeof JSON.stringify books:', typeof bookStrings);
 var string = '{"id": 1, "name": "Andy Chen"}';
 console.log('typeof JSON string:', typeof string);
 var parseJSON = JSON.parse(string);
-console.log('typeof parseJSON:', parseJSON);
+console.log('typeof parseJSON:', typeof parseJSON);
