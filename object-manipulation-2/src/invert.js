@@ -3,10 +3,10 @@
 function invert(source) {
   var obj = {};
 
-  for (var i = 0; i < source.length; i++) {
-    var key = source[i];
-    var value = source[i[i]];
-    obj[key] = value;
+  for (var sourceKey in source) {
+    var key = sourceKey;
+    var value = source[sourceKey];
+    obj[value] = key;
   }
   return obj;
 }
