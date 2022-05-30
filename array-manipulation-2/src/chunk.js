@@ -8,6 +8,19 @@
 - return array
 */
 
+// function chunk(array, size) {
+//   var newArray = [];
+//   if (size > array.length) {
+//     return array;
+//   }
+
+//   for (var i = 0; i < array.length; i += size) {
+//     var sliced = array.slice(i, i + size);
+//     newArray.push(sliced);
+//   }
+//   return newArray;
+// }
+
 function chunk(array, size) {
   var newArray = [];
   if (size > array.length) {
@@ -15,8 +28,13 @@ function chunk(array, size) {
   }
 
   for (var i = 0; i < array.length; i += size) {
-    var sliced = array.slice(i, i + size);
-    newArray.push(sliced);
+    var tempArray = [];
+    for (var j = 0; j < size; j += 1) {
+      if (j + i < array.length) {
+        tempArray.push(array[i + j]);
+      }
+    }
+    newArray.push(tempArray);
   }
   return newArray;
 }
