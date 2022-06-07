@@ -1,4 +1,4 @@
-// /* exported titleCase */
+/* exported titleCase */
 
 // /*
 //  - define a function with 1 parameter (string)
@@ -10,30 +10,32 @@
 //  -return APA string;
 // */
 
-// function titleCase(string) {
-//   var noCap = ['a', 'an', 'and', 'at', 'but', 'by', 'for', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
-//   var lowered = string.toLowerCase().split(' ');
-//   lowered[0] = lowered[0].charAt(0).toUpperCase() + lowered[0].slice(1);
-//   // console.log(lowered); OKAY
-//   for (var i = 0; i < lowered.length; i++) {
-//     if (lowered[i] === 'api') {
-//       lowered[i] = lowered[i].toUpperCase();
-//     }
-//     if (lowered[i].includes('javascript')) {
-//       lowered[i] = 'JavaScript';
-//     }
-//     // if (lowered[i - 1].includes(':')) {
-//     //   lowered[i] = lowered[i].charAt(0).toUpperCase() + lowered[i].slice(1);
-//     // }
-//     for (var k = 0; k < lowered[i].length; k++) {
-//       if (!(noCap.includes(lowered[i]))) {
-//         lowered[i] = lowered[i].charAt(0).toUpperCase() + lowered[i].slice(1);
-//       }
-//       if (lowered[i][k - 1] === '-') {
-//         lowered[i] = lowered[i].slice(0, k) + lowered[i][k].toUpperCase() + lowered[i].slice(k + 1);
-//       }
-//     }
-//   }
-
-//   console.log(lowered);
-// }
+function titleCase(string) {
+  var noCap = ['a', 'an', 'and', 'at', 'but', 'by', 'for', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
+  var lowered = string.toLowerCase();
+  lowered = lowered.replace('javascript', 'JavaScript');
+  var array = lowered.split(' ');
+  array[0] = array[0].charAt(0).toUpperCase() + array[0].slice(1);
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === 'api') {
+      array[i] = array[i].toUpperCase();
+    }
+    if (!(noCap.includes(array[i]))) {
+      array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+    }
+    for (var k = 0; k < array[i].length; k++) {
+      if (array[i][k - 1] === '-') {
+        array[i] = array[i].slice(0, k) + array[i][k].toUpperCase() + array[i].slice(k + 1);
+      }
+    }
+  }
+  var newString = array.join(' ');
+  var splitColon = newString.split(':');
+  for (var l = 0; l < splitColon.length; l++) {
+    if (splitColon[l].charAt(0) === ' ') {
+      splitColon[l] = ' ' + splitColon[l].charAt(1).toUpperCase() + splitColon[l].slice(2);
+    }
+  }
+  var finalString = splitColon.join(':');
+  return finalString;
+}
