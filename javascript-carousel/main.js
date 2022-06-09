@@ -2,6 +2,12 @@ var $img = document.querySelector('img');
 var $circles = document.querySelectorAll('i.circle');
 var $rightArrow = document.querySelector('i[id="right"]');
 var $leftArrow = document.querySelector('i[id="left"]');
+// var $view00 = document.querySelector('i[data-view="0"]');
+// var $view01 = document.querySelector('i[data-view="1"]');
+// var $view02 = document.querySelector('i[data-view="2"]');
+// var $view03 = document.querySelector('i[data-view="3"]');
+// var $view04 = document.querySelector('i[data-view="4"]');
+
 var intervalTime = setInterval(rightPic, 3000);
 var $images = ['images/001.png', 'images/004.png', 'images/007.png', 'images/025.png', 'images/039.png'];
 var imageIndex = 0;
