@@ -3,6 +3,7 @@ var $circles = document.querySelectorAll('i.circle');
 var $rightArrow = document.querySelector('i[id="right"]');
 var $leftArrow = document.querySelector('i[id="left"]');
 var $div = document.querySelector('div .row .align-center');
+var $dataView = document.querySelectorAll('i[data-view="circles"]');
 var intervalTime = setInterval(rightPic, 3000);
 var $images = ['images/001.png', 'images/004.png', 'images/007.png', 'images/025.png', 'images/039.png'];
 var imageIndex = 0;
@@ -10,14 +11,14 @@ var imageIndex = 0;
 $div.addEventListener('click', goToIndex);
 
 function goToIndex(event) {
-  if (event.target.matches('i.circle')) {
-    for (var i = 0; i < $circles.length; i++) {
-      if ($circles[i] === event.target) {
+  if (event.target.matches('i[data-view="circles"]')) {
+    for (var i = 0; i < $dataView.length; i++) {
+      if ($dataView[i] === event.target) {
         imageIndex = i;
-        $circles[i].className = 'fa-solid fa-circle fa-sm circle';
+        $dataView[i].className = 'fa-solid fa-circle fa-sm circle';
         $img.setAttribute('src', $images[imageIndex]);
       } else {
-        $circles[i].className = 'fa-regular fa-circle fa-sm circle';
+        $dataView[i].className = 'fa-regular fa-circle fa-sm circle';
       }
     }
   }
