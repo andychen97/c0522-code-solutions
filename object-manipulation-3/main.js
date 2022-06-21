@@ -1,32 +1,67 @@
+/*
+ - define a function with 2 parameters (ArrayOfPlayerName, amountOfCards)
+ - generate a deck of cards with their values (A = 11, and J, Q, K = 10)
+ - shuffle the deck
+ - give each player the amount of cards specified in the parameter
+ - return winner
+*/
+
 console.log('Lodash is loaded:', typeof _ !== 'undefined');
 
-// var cards = [
-//   { Diamond2: 2 }, { Club2: 2 }, { Heart2: 2 }, { Space2: 2 },
-//   { Diamond3: 3 }, { Club3: 3 }, { Heart3: 3 }, { Space3: 3 },
-//   { Diamond5: 4 }, { Club4: 4 }, { Heart4: 4 }, { Space4: 4 },
-//   { Diamond5: 5 }, { Club5: 5 }, { Heart5: 5 }, { Space5: 5 },
-//   { Diamond6: 6 }, { Club6: 6 }, { Heart6: 6 }, { Space6: 6 },
-//   { Diamond7: 7 }, { Club7: 7 }, { Heart7: 7 }, { Space7: 7 },
-//   { Diamond8: 8 }, { Club8: 8 }, { Heart8: 8 }, { Space8: 8 },
-//   { Diamond9: 9 }, { Club9: 9 }, { Heart9: 9 }, { Space9: 9 },
-//   { Diamond10: 10 }, { Club10: 10 }, { Heart10: 10 }, { Space10: 10 },
-//   { DiamondJ: 10 }, { ClubJ: 10 }, { HeartJ: 10 }, { SpaceJ: 10 },
-//   { DiamondQ: 10 }, { ClubQ: 10 }, { HeartQ: 10 }, { SpaceQ: 10 },
-//   { DiamondK: 10 }, { ClubK: 10 }, { HeartK: 10 }, { SpaceK: 10 },
-//   { DiamondAce: 11 }, { ClubAce: 11 }, { HeartAce: 11 }, { SpaceAce: 11 }
-// ];
+var suits = ['diamond', 'club', 'heart', 'spade'];
+var values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+var numericValue = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 
-// var players = [
-//   { player: 'Andy', card1: null, card2: null },
-//   { player: 'Fred', card1: null, card2: null },
-//   { player: 'Sharon', card1: null, card2: null },
-//   { player: 'Brian', card1: null, card2: null }
-// ];
+function game(ArrayOfPlayerName, amountOfCards) {
+  var deckOfCards = [];
+  for (var i = 0; i < suits.length; i++) {
+    for (var j = 0; j < values.length; j++) {
+      var cards = {
+        suit: suits[i],
+        value: values[j],
+        numericValue: numericValue[j]
+      };
+      deckOfCards.push(cards);
+    }
+  }
 
-// function cardGame() {
-//   var playerScore1 = 0;
-//   var playerScore2 = 0;
-//   var playerScore3 = 0;
-//   var playerScore4 = 0;
+  var cardIndex = [];
+  var shuffledCards = [];
+  for (var k = 0; k < deckOfCards.length; k++) {
+    var value = Math.floor(Math.random() * 52);
+    if (!(cardIndex.includes(value))) {
+      cardIndex.push(value);
+      shuffledCards.push(deckOfCards[cardIndex[k]]);
+    } else {
+      k--;
+    }
+  }
 
-// }
+  var shuffledIndex = 0;
+  var allPlayers = [];
+  var winningTotal = 0;
+  var winner;
+  for (var l = 0; l < ArrayOfPlayerName.length; l++) {
+    var currentHand = [];
+    var totalValue = 0;
+    for (var m = 0; m < amountOfCards; m++) {
+      currentHand.push(shuffledCards[shuffledIndex]);
+      totalValue += shuffledCards[shuffledIndex].numericValue;
+      shuffledIndex++;
+    }
+    var player = {
+      name: ArrayOfPlayerName[l],
+      cards: currentHand,
+      totalValue
+    };
+    allPlayers.push(player);
+
+    if (allPlayers[l].totalValue > winningTotal) {
+      winningTotal = allPlayers[l].totalValue;
+      winner = allPlayers[l];
+    }
+  }
+  return 'The winner of this round is ' + winner.name + '!';
+}
+
+game();
