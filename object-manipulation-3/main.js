@@ -1,8 +1,12 @@
+/* exported game */
+
 /*
  - define a function with 2 parameters (ArrayOfPlayerName, amountOfCards)
  - generate a deck of cards with their values (A = 11, and J, Q, K = 10)
  - shuffle the deck
  - give each player the amount of cards specified in the parameter
+ - check for winner
+ - if there is a tie, do a tie breaker game
  - return winner
 */
 
@@ -56,12 +60,23 @@ function game(ArrayOfPlayerName, amountOfCards) {
     };
     allPlayers.push(player);
 
-    if (allPlayers[l].totalValue > winningTotal) {
-      winningTotal = allPlayers[l].totalValue;
-      winner = allPlayers[l];
+    if (player.totalValue > winningTotal) {
+      winningTotal = player.totalValue;
+      winner = player;
     }
+  }
+  var extraRounds = [];
+  for (var n = 0; n < allPlayers.length; n++) {
+    if (allPlayers[n].totalValue === winningTotal && allPlayers[n] !== winner) {
+      extraRounds.push(allPlayers[n].name);
+    }
+  }
+  if (extraRounds.length > 0) {
+    extraRounds.push(winner.name);
+    console.log('Oh no! There was a tie!', extraRounds);
+    game(extraRounds, amountOfCards);
   }
   return 'The winner of this round is ' + winner.name + '!';
 }
 
-game();
+game(['Andy', 'Fred', 'Sharon', 'Bryan'], 5);
