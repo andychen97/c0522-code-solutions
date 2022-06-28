@@ -14,9 +14,7 @@
   libraryID: 3353
 };
 
-    const { title } = book1;
-    const { author } = book1;
-    const { libraryID } = book1;
+    const { title, author, libraryID } = book1;
 
     console.log(`The title of the book is ${title}, the author is ${author}, and the library id is ${libraryID}.`);
 
@@ -26,9 +24,7 @@
       libraryID: 2345
     };
 
-    const { title: otherTitle } = book2;
-    const { author: otherAuthor } = book2;
-    const { libraryID: otherLibraryID } = book2;
+    const { title: otherTitle, author: otherAuthor, libraryID: otherLibraryID } = book2;
 
     console.log(`The title of the book is ${otherTitle}, the author is ${otherAuthor}, and the library id is ${otherLibraryID}.`);
 
@@ -59,7 +55,7 @@
     console.log('book3:', book3);
     console.log('book4:', book4);
     console.log('book5:', book5);
-    const [, book6] = library;
+    const [, , , book6] = library;
     console.log('book6:', book6);
   </script>
 </body>
