@@ -1,12 +1,10 @@
 var count = 3;
 var countdown = setInterval(() => {
-  console.log(count);
-  count--;
   if (count === 0) {
-    var blastOff = setInterval(() => {
-      console.log('Blast off!');
-      clearInterval(countdown);
-      clearInterval(blastOff);
-    }, 1000);
+    console.log('Blast off!');
+    clearInterval(countdown);
+  } else {
+    console.log(count);
+    count--;
   }
 }, 1000);
