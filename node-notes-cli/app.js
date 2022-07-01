@@ -7,10 +7,9 @@ const thirdArg = process.argv[3];
 const update = process.argv[4];
 
 if (action === 'read') {
-  fs.readFile('./data.json', 'utf8', (err, data) => {
-    if (err) throw err;
-    console.log(data);
-  });
+  for (var key in dataJSON.notes) {
+    console.log(`${key}: ${dataJSON.notes[key]}`);
+  }
 } else if (action === 'create') {
   dataJSON.notes[dataJSON.nextId++] = thirdArg;
   const newObj = JSON.stringify(dataJSON, null, 2);
@@ -18,8 +17,8 @@ if (action === 'read') {
     if (err) throw err;
   });
 } else if (action === 'delete') {
-  for (var keys in dataJSON.notes) {
-    if (keys === thirdArg.toString()) {
+  for (const key in dataJSON.notes) {
+    if (key === thirdArg.toString()) {
       delete dataJSON.notes[thirdArg];
     }
   }
@@ -28,7 +27,7 @@ if (action === 'read') {
     if (err) throw err;
   });
 } else if (action === 'update') {
-  for (var key in dataJSON.notes) {
+  for (const key in dataJSON.notes) {
     if (key === thirdArg.toString()) {
       dataJSON.notes[key] = update;
     }
