@@ -24,11 +24,6 @@ const grades = {
 const app = express();
 app.use(express.json());
 
-// My solution
-// var gradesArray = Object.keys(grades).map(key => {
-//   return grades[key];
-// });
-
 app.get('/api/grades', (req, res) => {
   const gradesArray = [];
   for (const id in grades) {
@@ -39,18 +34,10 @@ app.get('/api/grades', (req, res) => {
 
 app.delete('/api/grades/:id', (req, res) => {
   const id = Number(req.params.id);
-  if (!grades[id]) {
-    res.sendStatus(404);
-  } else {
+  if (grades[id]) {
     delete grades[id];
     res.sendStatus(204);
   }
-  // for (var i = 0; i < gradesArray.length; i++) {
-  //   if (Number(gradesArray[i].id) === Number(req.params.id)) {
-  //     gradesArray.splice(i, 1);
-  //     res.sendStatus(204);
-  //   }
-  // }
 });
 
 app.listen(3000, () => {
