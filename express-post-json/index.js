@@ -20,16 +20,6 @@ app.post('/api/grades', (req, res) => {
   newGrade.id = id;
   grades[id] = newGrade;
   res.status(201).json(newGrade);
-
-  // MY SOLUTION
-  // const newGrades = {
-  //   id: nextId++,
-  //   name: req.body.name,
-  //   course: req.body.course,
-  //   score: req.body.score
-  // };
-  // grades.id = newGrades;
-  // res.status(201).send(newGrades);
 });
 
 app.listen(3000, () => {
