@@ -31,7 +31,7 @@ app.get('/api/notes/:id', (req, res) => {
 app.use(express.json());
 
 app.post('/api/notes', (req, res) => {
-  if (!(req.body.content)) {
+  if (!(req.body.content) || req.body.content === null) {
     const message400 = { error: 'content is a required field.' };
     res.status(400).send(message400);
   } else if (req.body.content !== null) {
@@ -47,6 +47,47 @@ app.post('/api/notes', (req, res) => {
   } else {
     const message500 = { error: 'An unexpected error occured.' };
     res.status(500).send(message500);
+  }
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+  const id = Number(req.params.id);
+  if (id < 0 || isNaN(id)) {
+    const message400 = { error: 'id must be a positive integer' };
+    res.status(400).send(message400);
+  } else if (!(dataJSON.notes[id])) {
+    const message404 = { error: `cannot find note with id ${id}` };
+    res.status(404).send(message404);
+  } else if (dataJSON.notes[id]) {
+    delete dataJSON.notes[id];
+    res.sendStatus(204);
+    const newObj = JSON.stringify(dataJSON, null, 2);
+    fs.writeFile('./data.json', newObj, err => {
+      const message500 = { error: 'An unexpected error occured.' };
+      if (err) console.error(res.status(500).send(message500));
+    });
+  }
+});
+
+app.put('/api/notes/:id', (req, res) => {
+  const id = Number(req.params.id);
+  if (id < 0 || isNaN(id)) {
+    const message400 = { error: 'id must be a positive integer' };
+    res.status(400).send(message400);
+  } else if (!(req.body.content)) {
+    const message400 = { error: 'content is a required field.' };
+    res.status(400).send(message400);
+  } else if (!(dataJSON.notes[id])) {
+    const message404 = { error: `cannot find note with id ${id}` };
+    res.status(404).send(message404);
+  } else if (dataJSON.notes[id] && req.body.content) {
+    dataJSON.notes[id].content = req.body.content;
+    res.status(200).send(dataJSON.notes[id]);
+    const newObj = JSON.stringify(dataJSON, null, 2);
+    fs.writeFile('./data.json', newObj, err => {
+      const message500 = { error: 'An unexpected error occured.' };
+      if (err) console.error(res.status(500).send(message500));
+    });
   }
 });
 

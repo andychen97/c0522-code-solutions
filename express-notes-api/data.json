@@ -1,49 +1,41 @@
 {
-  "nextId": 17,
+  "nextId": 30,
   "notes": {
     "2": {
       "id": 2,
       "content": "The event loop, this, closures, and prototypal inheritance are special about JavaScript."
     },
-    "5": {
-      "id": 5,
-      "content": "In JavaScript, the value of `this` is determined when a function is called; not when it is defined."
+    "22": {
+      "content": "hello there",
+      "id": 22
     },
-    "6": {
-      "id": 6,
-      "content": "A closure is formed when a function retains access to variables in its lexical scope."
+    "23": {
+      "content": "hello there2",
+      "id": 23
     },
-    "9": {
-      "id": 9,
-      "content": "Inertia is a property of matter."
+    "24": {
+      "content": "hello there3",
+      "id": 24
     },
-    "10": {
-      "content": "hello",
-      "id": 10
+    "25": {
+      "content": "hello there4",
+      "id": 25
     },
-    "11": {
-      "content": "hello",
-      "id": 11
+    "26": {
+      "content": "hello there5",
+      "id": 26
     },
-    "12": {
-      "content": "dddddddddd",
-      "id": 12
+    "27": {
+      "content": "hello there6",
+      "id": 27
     },
-    "13": {
-      "content": "wwwwwww",
-      "id": 13
+    "28": {
+      "content": "hello there8",
+      "id": 28
     },
-    "14": {
-      "content": "wwwwwww",
-      "id": 14
-    },
-    "15": {
-      "content": "ddfsdf",
-      "id": 15
-    },
-    "16": {
-      "content": "ddddd",
-      "id": 16
+    "29": {
+      "content": "this assignment is done?",
+      "id": 29
     }
   }
 }
