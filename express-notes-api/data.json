@@ -1,41 +1,13 @@
 {
-  "nextId": 30,
+  "nextId": 40,
   "notes": {
-    "2": {
-      "id": 2,
-      "content": "The event loop, this, closures, and prototypal inheritance are special about JavaScript."
+    "38": {
+      "content": "dfsdfdsfsdfsEntryyyyy.",
+      "id": 38
     },
-    "22": {
-      "content": "hello there",
-      "id": 22
-    },
-    "23": {
-      "content": "hello there2",
-      "id": 23
-    },
-    "24": {
-      "content": "hello there3",
-      "id": 24
-    },
-    "25": {
-      "content": "hello there4",
-      "id": 25
-    },
-    "26": {
-      "content": "hello there5",
-      "id": 26
-    },
-    "27": {
-      "content": "hello there6",
-      "id": 27
-    },
-    "28": {
-      "content": "hello there8",
-      "id": 28
-    },
-    "29": {
-      "content": "this assignment is done?",
-      "id": 29
+    "39": {
+      "content": "helloooooo",
+      "id": 39
     }
   }
 }

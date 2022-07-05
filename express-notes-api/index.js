@@ -11,7 +11,7 @@ app.get('/api/notes', (req, res) => {
   if (notesJSON.length > 0) {
     res.status(200).send(notesJSON);
   } else {
-    res.status(404);
+    res.send(notesJSON);
   }
 });
 
@@ -42,11 +42,9 @@ app.post('/api/notes', (req, res) => {
     res.status(201).send(dataJSON.notes[id]);
     const newObj = JSON.stringify(dataJSON, null, 2);
     fs.writeFile('./data.json', newObj, err => {
-      if (err) throw err;
+      const message500 = { error: 'An unexpected error occured.' };
+      if (err) console.error(res.status(500).send(message500));
     });
-  } else {
-    const message500 = { error: 'An unexpected error occured.' };
-    res.status(500).send(message500);
   }
 });
 
