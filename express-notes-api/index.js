@@ -8,11 +8,7 @@ app.get('/api/notes', (req, res) => {
   for (const key in dataJSON.notes) {
     notesJSON.push(dataJSON.notes[key]);
   }
-  if (notesJSON.length > 0) {
-    res.status(200).send(notesJSON);
-  } else {
-    res.send(notesJSON);
-  }
+  res.status(200).send(notesJSON);
 });
 
 app.get('/api/notes/:id', (req, res) => {
@@ -39,12 +35,15 @@ app.post('/api/notes', (req, res) => {
     const id = dataJSON.nextId++;
     newContent.id = id;
     dataJSON.notes[id] = newContent;
-    res.status(201).send(dataJSON.notes[id]);
     const newObj = JSON.stringify(dataJSON, null, 2);
     fs.writeFile('./data.json', newObj, err => {
       const message500 = { error: 'An unexpected error occured.' };
-      if (err) console.error(res.status(500).send(message500));
+      if (err) {
+        console.error(err);
+        res.status(500).send(message500);
+      }
     });
+    res.status(201).send(dataJSON.notes[id]);
   }
 });
 
@@ -58,12 +57,15 @@ app.delete('/api/notes/:id', (req, res) => {
     res.status(404).send(message404);
   } else if (dataJSON.notes[id]) {
     delete dataJSON.notes[id];
-    res.sendStatus(204);
     const newObj = JSON.stringify(dataJSON, null, 2);
     fs.writeFile('./data.json', newObj, err => {
       const message500 = { error: 'An unexpected error occured.' };
-      if (err) console.error(res.status(500).send(message500));
+      if (err) {
+        console.error(err);
+        res.status(500).send(message500);
+      }
     });
+    res.sendStatus(204);
   }
 });
 
@@ -80,12 +82,15 @@ app.put('/api/notes/:id', (req, res) => {
     res.status(404).send(message404);
   } else if (dataJSON.notes[id] && req.body.content) {
     dataJSON.notes[id].content = req.body.content;
-    res.status(200).send(dataJSON.notes[id]);
     const newObj = JSON.stringify(dataJSON, null, 2);
     fs.writeFile('./data.json', newObj, err => {
       const message500 = { error: 'An unexpected error occured.' };
-      if (err) console.error(res.status(500).send(message500));
+      if (err) {
+        console.error(err);
+        res.status(500).send(message500);
+      }
     });
+    res.status(200).send(dataJSON.notes[id]);
   }
 });
 
