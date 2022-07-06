@@ -41,9 +41,10 @@ app.post('/api/notes', (req, res) => {
       if (err) {
         console.error(err);
         res.status(500).send(message500);
+      } else {
+        res.status(201).send(dataJSON.notes[id]);
       }
     });
-    res.status(201).send(dataJSON.notes[id]);
   }
 });
 
@@ -63,9 +64,10 @@ app.delete('/api/notes/:id', (req, res) => {
       if (err) {
         console.error(err);
         res.status(500).send(message500);
+      } else {
+        res.sendStatus(204);
       }
     });
-    res.sendStatus(204);
   }
 });
 
@@ -88,9 +90,10 @@ app.put('/api/notes/:id', (req, res) => {
       if (err) {
         console.error(err);
         res.status(500).send(message500);
+      } else {
+        res.status(200).send(dataJSON.notes[id]);
       }
     });
-    res.status(200).send(dataJSON.notes[id]);
   }
 });
 
