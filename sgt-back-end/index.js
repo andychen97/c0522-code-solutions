@@ -119,7 +119,7 @@ app.delete('/api/grades/:id', (req, res) => {
     .then(result => {
       const grades = result.rows;
       if (!grades[id] && result.rowCount === 1) {
-        const message = `GradeId ${id} has been deleted from the table.`;
+        const message = { success: 'GradeId has been deleted from the table.' };
         res.status(204).send(message);
       } else {
         const message404 = { error: `cannot find note with id ${id}` };
