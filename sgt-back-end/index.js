@@ -16,9 +16,7 @@ app.get('/api/grades', (req, res) => {
   db.query(sql)
     .then(result => {
       const grades = result.rows;
-      if (grades) {
-        res.status(200).json(grades);
-      }
+      return res.status(200).json(grades);
     })
     .catch(err => {
       console.error(err);
@@ -48,10 +46,8 @@ app.post('/api/grades/', (req, res) => {
   const params = [name, course, score];
   db.query(sql, params)
     .then(result => {
-      const grades = result.rows;
-      if (name && course && score) {
-        res.status(201).json(grades);
-      }
+      const grades = result.rows[0];
+      return res.status(201).json(grades);
     })
     .catch(err => {
       console.error(err);
@@ -86,10 +82,10 @@ app.put('/api/grades/:id', (req, res) => {
   db.query(sql, params)
     .then(result => {
       const grades = result.rows;
-      if (!grades[id]) {
+      if (result.rowCount === 0) {
         const message404 = { error: `cannot find gradeId ${id}` };
         return res.status(404).send(message404);
-      } else if (name && course && score) {
+      } else {
         res.status(200).json(grades);
       }
     })
@@ -117,13 +113,12 @@ app.delete('/api/grades/:id', (req, res) => {
   `;
   db.query(sql, params)
     .then(result => {
-      const grades = result.rows;
-      if (!grades[id] && result.rowCount === 1) {
-        const message = { success: 'GradeId has been deleted from the table.' };
-        return res.status(204).send(message);
+      if (result.rowCount === 1) {
+        const message204 = { success: `gradeId ${id} was deleted.` };
+        return res.status(204).send(message204);
       } else {
         const message404 = { error: `cannot find note with id ${id}` };
-        res.status(404).send(message404);
+        return res.status(404).send(message404);
       }
     })
     .catch(err => {
