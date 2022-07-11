@@ -88,7 +88,7 @@ app.put('/api/grades/:id', (req, res) => {
       const grades = result.rows;
       if (!grades[id]) {
         const message404 = { error: `cannot find gradeId ${id}` };
-        res.status(404).send(message404);
+        return res.status(404).send(message404);
       } else if (name && course && score) {
         res.status(200).json(grades);
       }
@@ -120,7 +120,7 @@ app.delete('/api/grades/:id', (req, res) => {
       const grades = result.rows;
       if (!grades[id] && result.rowCount === 1) {
         const message = { success: 'GradeId has been deleted from the table.' };
-        res.status(204).send(message);
+        return res.status(204).send(message);
       } else {
         const message404 = { error: `cannot find note with id ${id}` };
         res.status(404).send(message404);
