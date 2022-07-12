@@ -1,13 +1,15 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-const div = React.createElement(
+const element = React.createElement(
   'h1',
   null,
   'Hello, React!'
 );
 
-const container = document.querySelector('div[id="root"]');
+console.log(element);
+
+const container = document.querySelector('#root');
 
 const root = ReactDOM.createRoot(container);
-root.render(div);
+root.render(element);
