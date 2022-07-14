@@ -12,6 +12,7 @@ class CustomButton extends React.Component {
     this.setState(prevState => ({
       isClicked: !prevState.isClicked
     }));
+    // this.setState({ isClicked: true })
   }
 
   render() {
@@ -20,6 +21,11 @@ class CustomButton extends React.Component {
         { this.state.isClicked ? 'Thanks!' : 'Click Me!' }
       </button>
     );
+    // if (this.state.isClicked) {
+    //   return <button>Thanks!</button>;
+    // } else {
+    //   return <button onClick={ this.handleClick }>Click Me!</button>
+    //   }
   }
 }
 
