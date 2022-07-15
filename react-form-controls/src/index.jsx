@@ -14,34 +14,31 @@ class RegistrationForm extends React.Component {
   }
 
   handleUsernameChange(event) {
-    const value = event.target.value;
-    this.setState({ username: value });
+    this.setState({ username: event.target.value });
   }
 
   handlePasswordChange(event) {
-    const value = event.target.value;
-    this.setState({ password: value });
+    this.setState({ password: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('state', this.state);
+    console.log('user and pass:', this.state);
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="signup-username">Username</label>
-        <input name="usename" type="text" id="signup-username" value={this.state.username} onChange={this.handleUsernameChange} />
-        <label htmlFor="signup-username">Password</label>
-        <input name="password" type="password" id="signup-password" value={this.state.password} onChange={this.handlePasswordChange} />
-        <button>Sign Up</button>
-      </form>
+    <form onSubmit={this.handleSubmit}>
+        <label htmlFor='username'>Username</label>
+      <input type='text' id="username" value={this.state.username} onChange={this.handleUsernameChange} />
+      <label htmlFor='password'>Password</label>
+      <input type='text' id='password' value={this.state.password} onChange={this.handlePasswordChange}/>
+      <button type='submit'>Submit</button>
+    </form>
     );
   }
 }
 
 const container = document.querySelector('#root');
 const root = ReactDOM.createRoot(container);
-
 root.render(<RegistrationForm />);
