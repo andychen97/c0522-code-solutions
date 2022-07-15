@@ -30,13 +30,13 @@ export default class StopWatch extends React.Component {
   }
 
   render() {
-    this.state.switch === false ? this.image = '../images/play.png' : this.image = '../images/pause.png';
+    const image = this.state.switch === false ? '../images/play.png' : '../images/pause.png';
     return (
       <div>
         <div className='circle' onClick={this.reset}>
           <h1 className='number'>{this.state.time}</h1>
         </div>
-        <img src={this.image} className='images' onClick={this.clock}/>
+        <img src={image} className='images' onClick={this.clock}/>
       </div>
     );
   }
