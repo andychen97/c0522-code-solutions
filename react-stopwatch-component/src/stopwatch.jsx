@@ -5,8 +5,7 @@ export default class StopWatch extends React.Component {
     super(props);
     this.state = {
       time: 0,
-      switch: false,
-      src: '../images/play.png'
+      switch: false
     };
     this.clock = this.clock.bind(this);
     this.reset = this.reset.bind(this);
@@ -14,18 +13,12 @@ export default class StopWatch extends React.Component {
 
   clock() {
     if (!this.state.switch) {
-      this.setState({
-        switch: true,
-        src: '../images/pause.png'
-      });
+      this.setState({ switch: true });
       this.timer = setInterval(() => {
         this.setState({ time: this.state.time + 1 });
       }, 1000);
     } else if (this.state.switch) {
-      this.setState({
-        switch: false,
-        src: '../images/play.png'
-      });
+      this.setState({ switch: false });
       clearInterval(this.timer);
     }
   }
@@ -37,12 +30,13 @@ export default class StopWatch extends React.Component {
   }
 
   render() {
+    this.state.switch === false ? this.image = '../images/play.png' : this.image = '../images/pause.png';
     return (
       <div>
         <div className='circle' onClick={this.reset}>
           <h1 className='number'>{this.state.time}</h1>
         </div>
-        <img src={this.state.src} className='images' onClick={this.clock}/>
+        <img src={this.image} className='images' onClick={this.clock}/>
       </div>
     );
   }
