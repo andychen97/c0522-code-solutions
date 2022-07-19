@@ -25,21 +25,24 @@ app.post('/api/auth/sign-up', (req, res, next) => {
   }
 
   /* your code starts here */
-  const hashed = argon2.hash(password);
   const sql = `
     insert into users ("username", "hashedPassword")
     values ($1, $2)
     returning *
   `;
-  const params = [username, hashed];
-  db.query(sql, params)
-    .then(result => {
-      const [{ userId, username, createdAt }] = result.rows;
-      const account = { userId, username, createdAt };
-      return res.status(201).send(account);
+  argon2.hash(password)
+    .then(pass => {
+      return [username, pass];
     })
+    .then(params => db.query(sql, params)
+      .then(result => {
+        const [{ userId, username, createdAt }] = result.rows;
+        const account = { userId, username, createdAt };
+        return res.status(201).send(account);
+      })
+      .catch(err => next(err))
+    )
     .catch(err => next(err));
-
 });
 
 app.use(errorMiddleware);
