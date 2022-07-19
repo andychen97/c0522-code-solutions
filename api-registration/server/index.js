@@ -31,17 +31,16 @@ app.post('/api/auth/sign-up', (req, res, next) => {
     returning *
   `;
   argon2.hash(password)
-    .then(pass => {
-      return [username, pass];
+    .then(hashed => {
+      const params = [username, hashed];
+      db.query(sql, params)
+        .then(result => {
+          const [{ userId, username, createdAt }] = result.rows;
+          const account = { userId, username, createdAt };
+          return res.status(201).send(account);
+        })
+        .catch(err => next(err));
     })
-    .then(params => db.query(sql, params)
-      .then(result => {
-        const [{ userId, username, createdAt }] = result.rows;
-        const account = { userId, username, createdAt };
-        return res.status(201).send(account);
-      })
-      .catch(err => next(err))
-    )
     .catch(err => next(err));
 });
 
