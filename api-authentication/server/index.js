@@ -73,12 +73,12 @@ app.post('/api/auth/sign-in', (req, res, next) => {
               };
               res.status(200).json(obj);
             } else {
-              res.status(401).json({ error: 'invalid login' });
+              throw new ClientError(401, 'invalid login');
             }
           })
           .catch(err => next(err));
       } else {
-        res.status(401).json({ error: 'invalid login' });
+        throw new ClientError(401, 'invalid login');
       }
     })
     .catch(err => next(err));
