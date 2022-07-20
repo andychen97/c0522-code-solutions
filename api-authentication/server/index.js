@@ -58,7 +58,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const [user] = result.rows;
-      if (result.rows) {
+      if (result.rows.length > 0) {
         argon2.verify(user.hashedPassword, password)
           .then(verified => {
             if (verified) {
