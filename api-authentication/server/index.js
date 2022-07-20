@@ -58,10 +58,14 @@ app.post('/api/auth/sign-in', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const [user] = result.rows;
-      if (result.rows.length > 0) {
+      if (!user) {
+        throw new ClientError(401, 'invalid login');
+      } else {
         argon2.verify(user.hashedPassword, password)
           .then(verified => {
-            if (verified) {
+            if (!verified) {
+              throw new ClientError(401, 'invalid login');
+            } else {
               const payload = {
                 userId: user.userId,
                 username
@@ -72,13 +76,9 @@ app.post('/api/auth/sign-in', (req, res, next) => {
                 user: payload
               };
               res.status(200).json(obj);
-            } else {
-              throw new ClientError(401, 'invalid login');
             }
           })
           .catch(err => next(err));
-      } else {
-        throw new ClientError(401, 'invalid login');
       }
     })
     .catch(err => next(err));
