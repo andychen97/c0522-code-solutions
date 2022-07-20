@@ -11,33 +11,33 @@ export default class ValidateInput extends React.Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+  }
+
+  render() {
+    var obj;
     const password = this.state.value.length;
     if (password < 1) {
-      return {
+      obj = {
         xMark: '',
         cMark: 'hidden',
         noText: '',
         shortText: 'hidden'
       };
     } else if (password < 8) {
-      return {
+      obj = {
         xMark: '',
         cMark: 'hidden',
         noText: 'hidden',
         shortText: ''
       };
     } else {
-      return {
+      obj = {
         xMark: 'hidden',
         cMark: '',
         noText: 'hidden',
         shortText: 'hidden'
       };
     }
-  }
-
-  render() {
-    const handleChange = this.handleChange;
     return (
       <div>
         <form onClick={this.handleClick}>
@@ -46,13 +46,12 @@ export default class ValidateInput extends React.Component {
           </div>
           <div>
             <input type='password' id='password' value={this.state.value} onChange={this.handleChange} name='password' />
-            <i className={'fa-solid fa-xmark x-mark ' + `${handleChange.xMark}`} />
-            <i className={'fa-solid fa-check check-mark ' + `${handleChange.cMark}`} />
+            <i className={`fa-solid fa-xmark x-mark ${obj.xMark}`} />
+            <i className={`fa-solid fa-check check-mark ${obj.cMark}`} />
           </div>
-          <input type='submit' value='submit'></input>
         </form>
-        <h6 className={'red-text ' + `${handleChange.noText}`}>A password is required.</h6>
-        <h6 className={'red-text ' + `${handleChange.shortText}`}>Your password is too short.</h6>
+        <h6 className={`red-text ${obj.noText}`}>A password is required.</h6>
+        <h6 className={`red-text ${obj.shortText}`}>Your password is too short.</h6>
       </div>
     );
   }
