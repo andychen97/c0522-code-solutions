@@ -2,26 +2,38 @@ User can sign up.
   - when the client(user) opens the website, index.jsx executes
   - index.jsx renders the app.jsx component
     - constructor gets defined
-    - render method gets called
-    - when the user types, the onChange method gets called
-  - sends a request to '/api/auth/sign-up' with new user and login
-  - the server checks the request body to ensure there is a username and password property/values
-    - if username and password are NOT provided
-      - ClientError function is called with 2 arguments (status code, message)
-      - jumps to ./client-error.js file where the ClientError class is being executed
-      - exports the return of the ClientError class back to index.js file and the remaining stack is thrown
-    - if username and password ARE provided
-      - server calls the hash method of the argon2 object on the password
-      - the username and hashed password gets stored in an array
-      - and the query method of db object gets called with an INSERT statement using the arrays as values
-      - the database then runs the INSERT statement
-      - returns the result to the server
-      - responds back to the client with a status code and a json string of and object within an array containing
-        userId, username and createAt properties/values
-    - if an error occurs at any given point, the server calls the catch method
-      - server finds and calls the the next middleware (errorMiddleware)
-      - jumps to the error-middleware.js file where the errorMiddleware is executed
-        - function checks which instance the error belongs to and server sends out the status code / message
-User can sign in.
+    - render method gets returned
+      - the return also calls the renderPage function
+      - function checks the path of the URL (sign-up)
+        - returns Auth component
+          - jumps to the auth.jsx file where the render method of AuthPage class gets called
+          - condition is checked to determine welcome message
+          - returns a react div element that also contains a jsx component (AuthForm)
+            - jumps to auth-form.jsx where AuthForm component gets executed
+              - constructor gets defined and render method is called
+              - whenever the user types, the onChange event listener method gets called with the handleChange method
+              - handleChange method updates the state of the username and password
+              - when user submits the form, the onSubmit event listener gets called with the handleSubmit method
+              - handleSubmit method fills in the request method, headers, and body with the state object
+              - calls the fetch method with the approprite route (sign-up)
+              - fetch sends a request to '/api/auth/sign-up' with new user and login
+              - the server checks the request body to ensure there is a username and password property/values
+                - if username and password are NOT provided
+                  - ClientError function is called with 2 arguments (status code, message)
+                  - jumps to ./client-error.js file where the ClientError class is being executed
+                  - exports the return of the ClientError class back to index.js file and the remaining stack is thrown
+                - if username and password ARE provided
+                  - server calls the hash method of the argon2 object on the password
+                  - the username and hashed password gets stored in an array
+                  - and the query method of db object gets called with an INSERT statement using the arrays as values
+                  - the database then runs the INSERT statement
+                  - returns the result to the server
+                  - responds back to the client with a status code and a json string of and object within an array containing
+                    userId, username and createAt properties/values
+                - if an error occurs at any given point, the server calls the catch method
+                  - server finds and calls the the next middleware (errorMiddleware)
+                  - jumps to the error-middleware.js file where the errorMiddleware is executed
+                    - function checks which instance the error belongs to and server sends out the status code / message
+User can sign in. (IN PROGRESS)
 User can stay signed in (even if they refresh the page).
 User can sign out.
