@@ -71,3 +71,12 @@ User can stay signed in (even if they refresh the page).
           - redirect component redirects to the sign-in page
 
 User can sign out.
+  - like the previous steps, page gets rendered with a few components, one being the Navbar component
+    - this component contains a signout button with an onClick event listener
+    - when the clicks "signout, the handleSignOut method of app.jsx module gets called
+    - local storage removes the token and sets the state of users to null
+    - setState invokes the render method to be called again
+    - returns a bunch of components and also calls the renderPage function
+      - since the path is still '', it renders the home component
+        - BUT the condition within the Home component checks for a user
+          - and since there is no user, it returns the redirect component which redirects to sign-in page
