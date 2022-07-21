@@ -4,7 +4,7 @@ User can sign up.
     - constructor gets defined
     - render method gets returned
       - the return also calls the renderPage function
-      - function checks the path of the URL (sign-up)
+      - function checks the path of the URL sign-up path is truthy
         - returns Auth component
           - jumps to the auth.jsx file where the render method of AuthPage class gets called
           - condition is checked to determine welcome message
@@ -16,7 +16,7 @@ User can sign up.
               - when user submits the form, the onSubmit event listener gets called with the handleSubmit method
               - handleSubmit method fills in the request method, headers, and body with the state object
               - calls the fetch method with the approprite route (sign-up)
-              - fetch sends a request to '/api/auth/sign-up' with new user and login
+              - fetch sends a request to '/api/auth/sign-up' with new user and password
               - the server checks the request body to ensure there is a username and password property/values
                 - if username and password are NOT provided
                   - ClientError function is called with 2 arguments (status code, message)
@@ -34,6 +34,20 @@ User can sign up.
                   - server finds and calls the the next middleware (errorMiddleware)
                   - jumps to the error-middleware.js file where the errorMiddleware is executed
                     - function checks which instance the error belongs to and server sends out the status code / message
-User can sign in. (IN PROGRESS)
+User can sign in.
+  - sign-in is similar to sign-up except sign-in path of renderPage function is truthy which also returns Auth component
+  - Auth component contains AuthForm component, which functions the same as sign-up
+  - fetch instead sends a request to '/api/auth/sign-in' with user and password
+  - similar to sign-up, server checks the body for username and pasword, throws and error if it's missing
+  - if valid then the server sends a sql SELECT statement to return the userId/hashedPassword where the username matches in the db
+  - if NO results, then ClientError function gets thrown
+  - if there IS results, then the sign-in password is hashed like in sign-up
+  - if the hashed passwords does NOT match then ClientError is thrown
+  - if it does matched then the userId and username gets stored in an 'payload' object
+  - the sign method of the jwt object gets called with 2 argument (payload object and the secret token)
+  - finally the server responds with the signed token and payload object
+  - also similar to sign-up, if an error occurs at any given point then the catch method is called
+    - error gets passed to the neext middleware (errorMiddleware) and returns an error message
+
 User can stay signed in (even if they refresh the page).
 User can sign out.
