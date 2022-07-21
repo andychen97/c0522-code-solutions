@@ -38,7 +38,6 @@ export default class ValidateInput extends React.Component {
     }
     return (
       <div>
-        {/* <form onClick={this.handleClick}> */}
         <form>
           <div>
             <label htmlFor='password'>Password</label>
