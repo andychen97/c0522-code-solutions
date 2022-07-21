@@ -1,0 +1,27 @@
+User can sign up.
+  - when the client(user) opens the website, index.jsx executes
+  - index.jsx renders the app.jsx component
+    - constructor gets defined
+    - render method gets called
+    - when the user types, the onChange method gets called
+  - sends a request to '/api/auth/sign-up' with new user and login
+  - the server checks the request body to ensure there is a username and password property/values
+    - if username and password are NOT provided
+      - ClientError function is called with 2 arguments (status code, message)
+      - jumps to ./client-error.js file where the ClientError class is being executed
+      - exports the return of the ClientError class back to index.js file and the remaining stack is thrown
+    - if username and password ARE provided
+      - server calls the hash method of the argon2 object on the password
+      - the username and hashed password gets stored in an array
+      - and the query method of db object gets called with an INSERT statement using the arrays as values
+      - the database then runs the INSERT statement
+      - returns the result to the server
+      - responds back to the client with a status code and a json string of and object within an array containing
+        userId, username and createAt properties/values
+    - if an error occurs at any given point, the server calls the catch method
+      - server finds and calls the the next middleware (errorMiddleware)
+      - jumps to the error-middleware.js file where the errorMiddleware is executed
+        - function checks which instance the error belongs to and server sends out the status code / message
+User can sign in.
+User can stay signed in (even if they refresh the page).
+User can sign out.
