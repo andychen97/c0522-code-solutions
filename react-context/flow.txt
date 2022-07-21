@@ -2,7 +2,9 @@ User can sign up.
   - when the client(user) opens the website, index.jsx executes
   - index.jsx renders the app.jsx component
     - constructor gets defined
-    - render method gets returned
+    - render method gets returned as null
+    - componentDidMount method runs and ultimately only changes the isAuthorizing property value to false
+      - setState triggers render method to run again, but this time returns components
       - the return also calls the renderPage function
       - function checks the path of the URL sign-up path is truthy
         - returns Auth component
@@ -34,6 +36,7 @@ User can sign up.
                   - server finds and calls the the next middleware (errorMiddleware)
                   - jumps to the error-middleware.js file where the errorMiddleware is executed
                     - function checks which instance the error belongs to and server sends out the status code / message
+
 User can sign in.
   - sign-in is similar to sign-up except sign-in path of renderPage function is truthy which also returns Auth component
   - Auth component contains AuthForm component, which functions the same as sign-up
@@ -66,4 +69,5 @@ User can stay signed in (even if they refresh the page).
       - conditon wthin render method checks if a the user property has a value
         - if not then redirect component gets returned
           - redirect component redirects to the sign-in page
+
 User can sign out.
