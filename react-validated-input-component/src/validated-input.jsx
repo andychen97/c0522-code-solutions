@@ -3,9 +3,7 @@ import React from 'react';
 export default class ValidateInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: ''
-    };
+    this.state = { value: '' };
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -14,44 +12,45 @@ export default class ValidateInput extends React.Component {
   }
 
   render() {
-    var obj;
+    let obj = {};
     const password = this.state.value.length;
     if (password < 1) {
       obj = {
-        xMark: '',
+        xMark: 'fa-solid fa-xmark x-mark',
         cMark: 'hidden',
-        noText: '',
+        noText: 'red-text',
         shortText: 'hidden'
       };
     } else if (password < 8) {
       obj = {
-        xMark: '',
+        xMark: 'fa-solid fa-xmark x-mark',
         cMark: 'hidden',
         noText: 'hidden',
-        shortText: ''
+        shortText: 'red-text'
       };
     } else {
       obj = {
         xMark: 'hidden',
-        cMark: '',
+        cMark: 'fa-solid fa-check check-mark',
         noText: 'hidden',
         shortText: 'hidden'
       };
     }
     return (
       <div>
-        <form onClick={this.handleClick}>
+        {/* <form onClick={this.handleClick}> */}
+        <form>
           <div>
             <label htmlFor='password'>Password</label>
           </div>
           <div>
             <input type='password' id='password' value={this.state.value} onChange={this.handleChange} name='password' />
-            <i className={`fa-solid fa-xmark x-mark ${obj.xMark}`} />
-            <i className={`fa-solid fa-check check-mark ${obj.cMark}`} />
+            <i className={obj.xMark} />
+            <i className={obj.cMark} />
           </div>
         </form>
-        <h6 className={`red-text ${obj.noText}`}>A password is required.</h6>
-        <h6 className={`red-text ${obj.shortText}`}>Your password is too short.</h6>
+        <h6 className={obj.noText}>A password is required.</h6>
+        <h6 className={obj.shortText}>Your password is too short.</h6>
       </div>
     );
   }
