@@ -9,7 +9,6 @@ export default class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    // const whichImage = this.state.imageIndex === this.props.images.length - 1 ? 0 : this.state.imageIndex + 1;
     setInterval(
       () => this.setState(
         { imageIndex: (this.state.imageIndex === this.props.images.length - 1) ? 0 : this.state.imageIndex + 1 }), 3000);
