@@ -8,19 +8,11 @@ export default class Carousel extends React.Component {
     this.rightClick = this.rightClick.bind(this);
   }
 
-  images() {
-    const pokemonIndex = this.state.imageIndex;
-    if (pokemonIndex === 0) {
-      return '001.png';
-    } else if (pokemonIndex === 1) {
-      return '004.png';
-    } else if (pokemonIndex === 2) {
-      return '007.png';
-    } else if (pokemonIndex === 3) {
-      return '025.png';
-    } else if (pokemonIndex === 4) {
-      return '039.png';
-    }
+  componentDidMount() {
+    // const whichImage = this.state.imageIndex === this.props.images.length - 1 ? 0 : this.state.imageIndex + 1;
+    setInterval(
+      () => this.setState(
+        { imageIndex: (this.state.imageIndex === this.props.images.length - 1) ? 0 : this.state.imageIndex + 1 }), 3000);
   }
 
   rightClick() {
