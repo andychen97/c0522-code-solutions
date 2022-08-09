@@ -6,7 +6,6 @@ import Carousel from './carousel';
 const container = document.querySelector('#root');
 const root = ReactDOM.createRoot(container);
 
-const images = [{ image: '../images/001.png' }, { image: '../images/004.png' }, { image: '../images/007.png' },
-  { image: '../images/025.png' }, { image: '../images/039.png' }];
+const images = ['../images/001.png', '../images/004.png', '../images/007.png', '../images/025.png', '../images/039.png'];
 
 root.render(<Carousel images={images}/>);
