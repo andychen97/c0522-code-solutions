@@ -1,9 +1,11 @@
 /* exported getTail */
 
 function getTail(list) {
-  let prev = list;
-  while (prev.next !== null) {
-    prev = prev.next;
+  let current = list;
+  let next = list.next;
+  while (next !== null) {
+    current = next;
+    next = current.next;
   }
-  return prev;
+  return current.data;
 }
