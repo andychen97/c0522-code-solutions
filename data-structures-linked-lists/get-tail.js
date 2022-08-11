@@ -8,4 +8,7 @@ function getTail(list) {
     next = current.next;
   }
   return current.data;
+
+  // while (list.next) list = list.next;
+  // return list.data;
 }

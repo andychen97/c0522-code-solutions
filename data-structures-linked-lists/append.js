@@ -10,4 +10,7 @@ function append(list, value) {
   }
 
   return current;
+
+  // while(list.next) list = list.next;
+  // list.new = new LinkedList(value);
 }
