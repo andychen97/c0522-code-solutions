@@ -2,15 +2,11 @@
 /* exported append */
 
 function append(list, value) {
-  let current = list;
-  let next = list.next;
-  while (next !== null) {
-    current = next;
-    next = current.next;
+  while (list.next) {
+    list = list.next;
   }
+  list.next = new LinkedList(value);
 
-  return current;
-
-  // while(list.next) list = list.next;
-  // list.new = new LinkedList(value);
+  // while (list.next) list = list.next;
+  // list.next = new LinkedList(value);
 }
