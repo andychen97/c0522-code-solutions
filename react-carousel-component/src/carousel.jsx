@@ -8,7 +8,8 @@ export default class Carousel extends React.Component {
     };
     this.handleRightArrow = this.handleRightArrow.bind(this);
     this.handleLeftArrow = this.handleLeftArrow.bind(this);
-    // this.dots = this.dots.bind(this);
+    this.dotsClick = this.dotsClick.bind(this);
+    this.dots = this.dots.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,31 @@ export default class Carousel extends React.Component {
     }
   }
 
+  dots(props) {
+    const images = props.images;
+    return images.map(image => {
+      const imageIndex = images.indexOf(image);
+      const dotClass = (imageIndex === this.state.imageIndex) ? 'fas fa-circle fa-lg padding circles' : 'far fa-circle fa-lg padding circles';
+      return (
+        <i className={dotClass} onClick={this.dotsClick} key={imageIndex} id={imageIndex} />
+      );
+    });
+  }
+
+  dotsClick(event) {
+    if (event.target.className === 'far fa-circle fa-lg padding circles') {
+      this.setState({ imadeIndex: Number(event.target.id) });
+      clearInterval(this.state.interval);
+      this.setState({
+        interval: setInterval(
+          () => this.setState(
+            { imageIndex: (this.state.imageIndex === this.props.images.length - 1) ? 0 : this.state.imageIndex + 1 }),
+          3000
+        )
+      });
+    }
+  }
+
   render() {
     const images = this.props.images;
     return (
@@ -55,7 +81,7 @@ export default class Carousel extends React.Component {
           <i className="fa-solid fa-2xl fa-angle-right arrows" onClick={this.handleRightArrow} />
         </div>
         <div className='row justify-center'>
-          {this.dots}
+          {this.dots(this.props)}
         </div>
       </div>
     );
