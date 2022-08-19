@@ -59,7 +59,7 @@ export default class Carousel extends React.Component {
 
   dotsClick(event) {
     if (event.target.className === 'far fa-circle fa-lg padding circles') {
-      this.setState({ imadeIndex: Number(event.target.id) });
+      this.setState({ imageIndex: Number(event.target.id) });
       clearInterval(this.state.interval);
       this.setState({
         interval: setInterval(
